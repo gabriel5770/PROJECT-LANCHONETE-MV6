@@ -4,7 +4,7 @@ namespace LanchesMac.Repositories.Interfaces
 {
     public interface ICategoriaRepository
     {
-        //Coleção de objetos categorias
+        //Obtém uma coleção de objetos Categorias
         IEnumerable<Categoria> Categorias { get; }
     }
 }
