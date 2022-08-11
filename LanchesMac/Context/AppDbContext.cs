@@ -20,6 +20,6 @@ namespace LanchesMac.Context
         //As variáveis abaixo iram virar tabelas
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Lanche> Lanches { get; set; }
-
+        public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
     }
 }

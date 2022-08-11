@@ -1,4 +1,5 @@
 ﻿ using LanchesMac.Repositories.Interfaces;
+using LanchesMac.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LanchesMac.Controllers
@@ -19,8 +20,17 @@ namespace LanchesMac.Controllers
 
 
             //Retorna uma lista de lanches
-            var lanches = _lancheRepository.Lanches;
-            return View(lanches);
+            //var lanches = _lancheRepository.Lanches;
+            //return View(lanches);
+
+
+            //Acessa a viewModel (essa view model acessa o repositório da classe Lanche, logo
+            //o efeito será o mesmo que o Model)
+            var lanchesListViewModel = new LancheListViewModel();
+            lanchesListViewModel.Lanches = _lancheRepository.Lanches;
+            lanchesListViewModel.CategoriaAtual = "Categoria Atual";
+
+            return View(lanchesListViewModel);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using LanchesMac.Context;
 using LanchesMac.Repositories;
 using LanchesMac.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+ using Microsoft.EntityFrameworkCore;
 
 namespace LanchesMac;
 public class Startup
@@ -22,7 +22,17 @@ public class Startup
         services.AddTransient<ILancheRepository, LancheRepository>();
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
+
+        //serviço para recuperar uma instância de httpcontextacessor e obter informações do request ,
+        //response , sobre autenticação e outras informações da requisição atual 
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
         services.AddControllersWithViews();
+
+
+        //Registrando os middleware da session do usuário
+        services.AddMemoryCache();
+        services.AddSession();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +53,9 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthorization();
+
+        //ativa o session
+        app.UseSession();
 
         app.UseEndpoints(endpoints =>
         {

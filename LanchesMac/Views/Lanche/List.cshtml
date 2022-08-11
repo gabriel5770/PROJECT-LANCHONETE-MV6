@@ -1,21 +1,20 @@
-﻿@model IEnumerable<LanchesMac.Models.Lanche>
+﻿
+@*referenciando LancheListViewModel  *@
+@model LancheListViewModel
 
 <div>
-    <h2>Todos os lanches</h2>
+    <h2>@Model.CategoriaAtual</h2>
 </div>
 
 
 <div class="container">
 <div class="row">
-@foreach (var lanche in Model)
+@foreach (var lanche in Model.Lanches)
 {
-
-    <div class="col-sm-4 col-md-4 col-lg-4"> 
-    <p><img scr="@lanche.ImagemUrl" class="img-fluid" /></p>
-        <h4>@lanche.Nome</h4>
-        <p><img src="@lanche.ImagemUrl"></p>
-        <h3>Preço: @lanche.Preco.ToString("c")</h3>
-    </div>
+    //PartialView serve para usar a o "Código html de View" nas demais views
+    //referenciando a partialView _LanchesResumo (criada na pasta shared)
+    <partial name="_LanchesResumo" for ="@lanche"/>
+   
 }
 
     </div>
